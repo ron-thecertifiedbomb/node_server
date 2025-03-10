@@ -67,7 +67,7 @@ app.put("/api/user/:id", (req, res) => {
 });
 
 // Delete an item
-app.delete("/api/users/:id", (req, res) => {
+app.delete("/api/user/:id", (req, res) => {
   const db = readDatabase();
   const filteredUsers = db.users.filter((user) => user.id !== Number(req.params.id));
 
