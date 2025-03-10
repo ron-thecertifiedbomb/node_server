@@ -47,13 +47,14 @@ app.post("/api/users", (req, res) => {
   try {
     const db = readDatabase();
 
-    if (!db.items) {
-      db.items = []; 
-    }
-    const newUser = { id: Date.now(), ...req.body };
-    db.items.push(newUser);
-    writeDatabase(db);
-    res.status(201).json(newUser);
+   if (!db.users) {
+     db.users = []; // Ensure `users` array exists
+   }
+   const newUser = { id: Date.now(), ...req.body };
+   db.users.push(newUser); 
+   writeDatabase(db);
+   res.status(201).json(newUser);
+
   } catch (error) {
     console.error("Error adding user:", error);
     res.status(500).json({ message: "Internal Server Error" });
