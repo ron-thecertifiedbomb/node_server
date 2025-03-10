@@ -1,0 +1,22 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: 'red';
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    color: 'red';
+}
+
+.title {
+    color: green;
+    font-size: 28px;
+    text-align: center;
+}
+
+p {
+    font-size: 18px;
+    color: #555;
+}
