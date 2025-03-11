@@ -38,23 +38,24 @@ app.get("/api/users", (req, res) => {
 
 // Get a single user by ID
 app.get("/api/user/:id", (req, res) => {
-    const db = readDatabase();
-    const user = db.users.find((user) => user.id === Number(req.params.id));
-    user ? res.json(user) : res.status(404).json({ error: "User not found" });
-  });
+  const db = readDatabase();
+  const user = db.users.find((user) => user.id === Number(req.params.id));
+  user ? res.json(user) : res.status(404).json({ error: "User not found" });
+});
+
+// Add user
 
 app.post("/api/users", (req, res) => {
   try {
     const db = readDatabase();
 
-   if (!db.users) {
-     db.users = []; // Ensure `users` array exists
-   }
-   const newUser = { id: Date.now(), ...req.body };
-   db.users.push(newUser); 
-   writeDatabase(db);
-   res.status(201).json(newUser);
-
+    if (!db.users) {
+      db.users = []; // Ensure `users` array exists
+    }
+    const newUser = { id: Date.now(), ...req.body };
+    db.users.push(newUser);
+    writeDatabase(db);
+    res.status(201).json(newUser);
   } catch (error) {
     console.error("Error adding user:", error);
     res.status(500).json({ message: "Internal Server Error" });
@@ -64,7 +65,7 @@ app.post("/api/users", (req, res) => {
 // Update an item
 app.put("/api/user/:id", (req, res) => {
   const db = readDatabase();
-  const index = db.user.findIndex((user) => user.id === Number(req.params.id));
+  const index = db.users.findIndex((user) => user.id === Number(req.params.id));
 
   if (index !== -1) {
     db.users[index] = { ...db.users[index], ...req.body };
@@ -78,7 +79,9 @@ app.put("/api/user/:id", (req, res) => {
 // Delete an item
 app.delete("/api/user/:id", (req, res) => {
   const db = readDatabase();
-  const filteredUsers = db.users.filter((user) => user.id !== Number(req.params.id));
+  const filteredUsers = db.users.filter(
+    (user) => user.id !== Number(req.params.id)
+  );
 
   if (filteredUsers.length !== db.users.length) {
     db.users = filteredUsers;
