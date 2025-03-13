@@ -20,20 +20,20 @@ const writeDatabase = (data) => {
   fs.writeFileSync(DB_FILE, JSON.stringify(data, null, 2));
 };
 
-// Get all users
+
 export const getUsers = (req, res) => {
   const db = readDatabase();
   res.json(db.users);
 };
 
-// Get user by ID
+
 export const getUserById = (req, res) => {
   const db = readDatabase();
   const user = db.users.find((user) => user.id === Number(req.params.id));
   user ? res.json(user) : res.status(404).json({ error: "User not found" });
 };
 
-// Add user
+
 export const addUser = (req, res) => {
   try {
     const db = readDatabase();
@@ -50,7 +50,7 @@ export const addUser = (req, res) => {
   }
 };
 
-// Update user
+
 export const updateUser = (req, res) => {
   const db = readDatabase();
   const index = db.users.findIndex((user) => user.id === Number(req.params.id));
@@ -64,7 +64,7 @@ export const updateUser = (req, res) => {
   }
 };
 
-// Delete user
+
 export const deleteUser = (req, res) => {
   const db = readDatabase();
   const filteredUsers = db.users.filter(

@@ -1,0 +1,66 @@
+{
+  "products": [
+    {
+      "_id": "1",
+      "availableColors": ["Black", "Silver"],
+      "category": "Laptop",
+      "imageUrls": [
+        "https://example.com/laptop1-front.jpg",
+        "https://example.com/laptop1-back.jpg"
+      ],
+      "includedItems": ["Charger", "User Manual"],
+      "manufacturer": "TechBrand",
+      "price": 1200,
+      "productName": "TechBrand X1",
+      "quantity": 50,
+      "specifications": {
+        "color": "Black",
+        "processor": "Intel i7",
+        "storage": "512GB SSD",
+        "maxFrameRate": "144Hz",
+        "resolution": "1920x1080"
+      }
+    },
+    {
+      "_id": "2",
+      "availableColors": ["Blue", "Red"],
+      "category": "Smartphone",
+      "imageUrls": [
+        "https://example.com/phone1-front.jpg",
+        "https://example.com/phone1-back.jpg"
+      ],
+      "includedItems": ["Charging Cable", "Earphones"],
+      "manufacturer": "MobileTech",
+      "price": 800,
+      "productName": "MobileTech S10",
+      "quantity": 100,
+      "specifications": {
+        "color": "Blue",
+        "storage": "128GB",
+        "resolution": "2400x1080",
+        "size": "6.5 inches"
+      }
+    },
+    {
+      "_id": "3",
+      "availableColors": ["Black", "White"],
+      "category": "Gaming Console",
+      "imageUrls": [
+        "https://example.com/console1-front.jpg",
+        "https://example.com/console1-side.jpg"
+      ],
+      "includedItems": ["Controller", "HDMI Cable", "Power Adapter"],
+      "manufacturer": "GameZone",
+      "price": 500,
+      "productName": "GameZone X",
+      "quantity": 30,
+      "specifications": {
+        "color": "White",
+        "graphics": "AMD RDNA 2",
+        "storage": "1TB SSD",
+        "maxFrameRate": "120Hz",
+        "resolution": "4K UHD"
+      }
+    }
+  ]
+}
