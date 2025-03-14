@@ -3,8 +3,9 @@ import cors from "cors";
 import path from "path";
 import { fileURLToPath } from "url";
 import productRoutes from "./routes/productRoutes.js";
-import requestLogger from "./middlewares/logger.js"; 
-import connectDB from "./dbConfig/dbConfig.js"; // Change 'require' to 'import'
+import employeeRoutes from "./routes/employeeRoutes.js"; // Import employee routes
+import requestLogger from "./middlewares/logger.js";
+import connectDB from "./dbConfig/dbConfig.js";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -25,8 +26,8 @@ app.use(cors());
 app.use(express.static(path.join(__dirname, "public")));
 
 // Routes
-
-app.use("/api", productRoutes);
+app.use("/api/products", productRoutes);
+app.use("/api/employees", employeeRoutes); // Add employee routes
 
 app.listen(PORT, () =>
   console.log(`Server running on http://localhost:${PORT}`)
