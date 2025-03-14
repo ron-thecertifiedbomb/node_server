@@ -5,7 +5,7 @@ import {
   getProductById,
 } from "../controllers/productController/productController.js";
 import requestLogger from "../middlewares/logger.js"; 
-
+import cacheMiddleware from "../middlewares/logger.js"; 
 const router = express.Router();
 
 router.use(requestLogger);
@@ -15,7 +15,7 @@ router.use(requestLogger);
 router.post("/", requestLogger, createProduct);
 
 // Route to get all products
-router.get("/", getAllProducts);
+router.get("/", cacheMiddleware,  getAllProducts);
 
 // Route to get a product by ID
 router.get("/:id", getProductById);
