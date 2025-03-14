@@ -3,7 +3,8 @@ import {
   createEmployee,
   getAllEmployees,
   getEmployeeById,
-  deleteEmployee
+  deleteEmployee,
+  logEmployeeTime,
 } from "../controllers/employeeController/employeeController.js";
 
 const router = express.Router();
@@ -19,5 +20,8 @@ router.get("/:id", getEmployeeById);
 
 // Route to delete employee by ID
 router.delete("/:id", deleteEmployee);
+
+// Route to log employee using Qr code
+router.post("/log-time", logEmployeeTime);
 
 export default router;
