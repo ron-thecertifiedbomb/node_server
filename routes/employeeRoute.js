@@ -3,6 +3,7 @@ import {
   createEmployee,
   getAllEmployees,
   getEmployeeById,
+  deleteEmployee
 } from "../controllers/employeeController/employeeController.js";
 
 const router = express.Router();
@@ -15,5 +16,8 @@ router.get("/", getAllEmployees);
 
 // Route to get an employee by ID
 router.get("/:id", getEmployeeById);
+
+// Route to delete employee by ID
+router.delete("/:id", deleteEmployee);
 
 export default router;

@@ -6,12 +6,7 @@ const TimeLogSchema = new mongoose.Schema({
   timeOut: { type: Date },
   totalHours: {
     type: Number,
-    default: function () {
-      if (this.timeIn && this.timeOut) {
-        return (this.timeOut - this.timeIn) / (1000 * 60 * 60); // Convert ms to hours
-      }
-      return 0;
-    },
+    default: 0,
   },
 });
 
@@ -20,8 +15,16 @@ const EmployeeSchema = new mongoose.Schema({
   employeeId: { type: String, required: true, unique: true },
   position: { type: String },
   department: { type: String },
-  timeLogs: [TimeLogSchema], // Array of time-in/time-out records
-  qrCode: { type: String }, // Added field for QR code
+  timeLogs: [TimeLogSchema],
+  qrCode: { type: String }, // ✅ Added QR Code field
+});
+
+// Middleware to update totalHours before saving
+TimeLogSchema.pre("save", function (next) {
+  if (this.timeIn && this.timeOut) {
+    this.totalHours = (this.timeOut - this.timeIn) / (1000 * 60 * 60); // Convert ms to hours
+  }
+  next();
 });
 
 const Employee = mongoose.model("Employee", EmployeeSchema);
