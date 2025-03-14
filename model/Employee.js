@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const TimeLogSchema = new mongoose.Schema({
   date: { type: Date, default: Date.now },
@@ -21,8 +21,9 @@ const EmployeeSchema = new mongoose.Schema({
   position: { type: String },
   department: { type: String },
   timeLogs: [TimeLogSchema], // Array of time-in/time-out records
+  qrCode: { type: String }, // Added field for QR code
 });
 
 const Employee = mongoose.model("Employee", EmployeeSchema);
 
-module.exports = Employee;
+export default Employee;

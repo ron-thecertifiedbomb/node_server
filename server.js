@@ -3,7 +3,7 @@ import cors from "cors";
 import path from "path";
 import { fileURLToPath } from "url";
 import productRoutes from "./routes/productRoutes.js";
-import employeeRoutes from "./routes/employeeRoutes.js"; // Import employee routes
+import employeeRoutes from "./routes/employeeRoute.js"; // Import employee routes
 import requestLogger from "./middlewares/logger.js";
 import connectDB from "./dbConfig/dbConfig.js";
 import dotenv from "dotenv";

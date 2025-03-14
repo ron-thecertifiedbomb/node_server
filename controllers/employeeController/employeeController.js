@@ -1,4 +1,4 @@
-import Employee from "../models/Employee.js";
+import Employee from "../../model/Employee.js";
 import QRCode from "qrcode";
 
 // Controller to create a new employee

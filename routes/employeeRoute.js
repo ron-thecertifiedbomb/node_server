@@ -4,11 +4,8 @@ import {
   getAllEmployees,
   getEmployeeById,
 } from "../controllers/employeeController/employeeController.js";
-import requestLogger from "../middlewares/logger.js";
 
 const router = express.Router();
-
-router.use(requestLogger);
 
 // Route to create a new employee
 router.post("/", createEmployee);
