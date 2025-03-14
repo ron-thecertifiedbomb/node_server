@@ -2,7 +2,6 @@ import express from "express";
 import cors from "cors";
 import path from "path";
 import { fileURLToPath } from "url";
-import productRoutes from "./routes/productRoutes.js";
 import employeeRoutes from "./routes/employeeRoute.js"; // Import employee routes
 import requestLogger from "./middlewares/logger.js";
 import connectDB from "./dbConfig/dbConfig.js";
@@ -26,7 +25,6 @@ app.use(cors());
 app.use(express.static(path.join(__dirname, "public")));
 
 // Routes
-app.use("/api/products", productRoutes);
 app.use("/api/employees", employeeRoutes); // Add employee routes
 
 app.listen(PORT, () =>
