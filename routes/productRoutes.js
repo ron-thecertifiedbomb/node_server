@@ -5,7 +5,7 @@ import {
   getProductById,
 } from "../controllers/productController/productController.js";
 import requestLogger from "../middlewares/logger.js"; 
-import cacheMiddleware from "../middlewares/logger.js"; 
+import cacheMiddleware from "../middlewares/cacheMiddleware.js"; 
 const router = express.Router();
 
 router.use(requestLogger);
