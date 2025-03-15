@@ -1,13 +1,20 @@
 import mongoose from "mongoose";
-import { differenceInHours } from "date-fns";
+
+
 const TimeLogSchema = new mongoose.Schema({
   date: { type: Date, default: Date.now },
   timeIn: { type: Date, required: true },
   timeOut: { type: Date },
-  totalHours: {
-    type: Number,
-    default: 0,
-  },
+  totalHours: { type: Number, default: 0 },
+});
+
+// Middleware to update totalHours before saving
+TimeLogSchema.pre("save", function (next) {
+  if (this.timeIn && this.timeOut) {
+    // ✅ Ensures accurate time difference calculation
+    this.totalHours = (this.timeOut - this.timeIn) / (1000 * 60 * 60);
+  }
+  next();
 });
 
 const EmployeeSchema = new mongoose.Schema({
@@ -15,16 +22,8 @@ const EmployeeSchema = new mongoose.Schema({
   employeeId: { type: String, required: true, unique: true },
   position: { type: String },
   department: { type: String },
-  timeLogs: [TimeLogSchema],
-  qrCode: { type: String }, // ✅ Added QR Code field
-});
-
-// Middleware to update totalHours before saving
-TimeLogSchema.pre("save", function (next) {
-  if (this.timeIn && this.timeOut) {
-    this.totalHours = differenceInHours(this.timeOut, this.timeIn);
-  }
-  next();
+  timeLogs: { type: [TimeLogSchema], default: [] }, // ✅ Always defaults to an empty array
+  qrCode: { type: String },
 });
 
 const Employee = mongoose.model("Employee", EmployeeSchema);
