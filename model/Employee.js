@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-
+import { differenceInHours } from "date-fns";
 const TimeLogSchema = new mongoose.Schema({
   date: { type: Date, default: Date.now },
   timeIn: { type: Date, required: true },
@@ -22,7 +22,7 @@ const EmployeeSchema = new mongoose.Schema({
 // Middleware to update totalHours before saving
 TimeLogSchema.pre("save", function (next) {
   if (this.timeIn && this.timeOut) {
-    this.totalHours = (this.timeOut - this.timeIn) / (1000 * 60 * 60); // Convert ms to hours
+    this.totalHours = differenceInHours(this.timeOut, this.timeIn);
   }
   next();
 });

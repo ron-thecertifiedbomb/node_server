@@ -23,7 +23,7 @@ const generateUniqueEmployeeId = async () => {
 
 // Controller to create a new employee
 export const createEmployee = async (req, res) => {
-  const { name, position, department, timeLogs } = req.body;
+ const { name, position, department, timeLogs = [] } = req.body;
 
   if (!name || !position || !department || !timeLogs) {
     return res.status(400).json({ message: "Please provide all required fields" });
